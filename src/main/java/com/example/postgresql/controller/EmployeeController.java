@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -66,7 +65,7 @@ public class EmployeeController {
 	
 	//delete employee
 	@DeleteMapping("employees/{id}")
-	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException{
+	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId) throws ResorceNotFoundException{
 		Employee employee = employeeRepository.findById(employeeId)
 				.orElseThrow(()->new ResorceNotFoundException("Employee not found for this id : "+employeeId));
 		this.employeeRepository.delete(employee);
